@@ -2,88 +2,93 @@
 
 @section('page-content')
 <div class="container-fluid"></div>
-    <div class="row">
+    <div class="row bg-3">
         <div class="col">
             <h3>Usuarios</h3>
         </div>
     </div>
 </div>
 
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="container-full-height d-flex justify-content-center align-items-center bg-radial-gradient" style="height: 100vh;">
     <div class="row">
-        <div class="col-10"></div>
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Contraseña</th>
-                        <th>Deuda</th>
-                        <th>Ultimo registro</th>
-                        <th>Rol</th>
-                        <th>Existencia</th>
-                        <th colspan="2">Manejo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($usuarios as $usuario)
-                    <tr>
-                        <td class="align-middle">{{$usuario->id}}</td>
-                        <td class="align-middle">{{$usuario->nombre}}</td>
-                        <td class="align-middle">{{$usuario->email}}</td>
-                        <td class="align-middle">{{$usuario->password}}</td>
-                        <td class="align-middle">{{$usuario->deuda}}</td>
-                        <td class="align-middle">{{$usuario->u_login}}</td>
-                        <td class="align-middle">{{$usuario->rol->rol_nombre}}</td>
-                        <td class="align-middle">{{$usuario->usuario_ex?'Si':'No'}}</td>
-
-                            <td class="align-middle">
-                                @if(Auth::user()->id!=$usuario->id)
-                                <form method="POST" action="{{route('usuarios.destroy', $usuario->id)}}">
-                                    @csrf
-                                    @method('delete')
-                                    <button>
-                                        <span>D</span>
-                                    </button>
-                                </form>
-                                @endif
-                            </td>
-
-                            <td class="align-middle">
-                                @if(Auth::user()->id!=$usuario->id)
-                                <form method="POST" action="{{route('usuarios.activar', $usuario->id)}}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
-                                    title="{{$usuario->usuario_ex?'Desactivar':'Activar'}} Usuario">
-                                        <span>{{$usuario->usuario_ex?'D':'A'}}</span>
-                                    </button>
-                                </form>
-                                @endif
-                            </td>
-    
-                            {{-- <td class="align-middle">
-                                <a href="{{route('usuarios.edit', $usuario->id)}}" class="btn">
-                                    <span class="material-icons">edit</span>
-                                </a>
-                            </td> --}}
-    
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="col-2">
-                <h1>1</h1>
+        <div class="col-lg mb-2">
+            <div class="card mx-5">
+                <div class="card-header">
+                    <b>Listado de Usuarios</b>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Contraseña</th>
+                                <th>Deuda</th>
+                                <th>Ultimo registro</th>
+                                <th>Rol</th>
+                                <th>Existencia</th>
+                                <th colspan="2">Manejo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($usuarios as $usuario)
+                            <tr>
+                                <td class="align-middle">{{$usuario->id}}</td>
+                                <td class="align-middle">{{$usuario->nombre}}</td>
+                                <td class="align-middle">{{$usuario->email}}</td>
+                                <td class="align-middle">{{$usuario->password}}</td>
+                                <td class="align-middle">{{$usuario->deuda}}</td>
+                                <td class="align-middle">{{$usuario->u_login}}</td>
+                                <td class="align-middle">{{$usuario->rol->rol_nombre}}</td>
+                                <td class="align-middle">{{$usuario->usuario_ex?'Si':'No'}}</td>
+        
+                                    <td class="align-middle">
+                                        @if(Auth::user()->id!=$usuario->id)
+                                        <form method="POST" action="{{route('usuarios.destroy', $usuario->id)}}">
+                                            @csrf
+                                            @method('delete')
+                                            <button data-toggle="tooltip" data-placement="top" title="Borrar">
+                                                <i class="fa-solid fa-delete-left"></i>
+                                            </button>
+                                        </form>
+                                        @endif
+                                    </td>
+        
+                                    <td class="align-middle">
+                                        @if(Auth::user()->id!=$usuario->id)
+                                        <form method="POST" action="{{route('usuarios.activar', $usuario->id)}}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="top"
+                                            title="{{$usuario->usuario_ex?'Desactivar':'Activar'}} Usuario">
+                                                <span>{{$usuario->usuario_ex?'D':'A'}}</span>
+                                            </button>
+                                        </form>
+                                        @endif
+                                    </td>
+            
+                                    {{-- <td class="align-middle">
+                                        <a href="{{route('usuarios.edit', $usuario->id)}}" class="btn">
+                                            <span class="material-icons">edit</span>
+                                        </a>
+                                    </td> --}}
+            
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            
         </div>
 
         <br>
 
         <div class="row">
             <container>
-                <div class="card">
+                <div class="card bg-3">
                     <div class="card-header">
-                        Agregar usuario
+                        <i>Agregar usuario</i> 
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{route('usuarios.store')}}">
@@ -114,11 +119,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="row"> 
-                                    <div class="col-12">
-                                        <button class="btn" type="reset">Cancelar</button>
+                                    <div class="col-12 my-1">
+                                        <button class="btn btn-warning" type="reset">Cancelar</button>
                                     </div>
-                                    <div class="col-12">
-                                        <button class="btn" type="submit">Aceptar</button>
+                                    <div class="col-12 my-1">
+                                        <button class="btn btn-success" type="submit">Aceptar</button>
                                     </div>
                                 </div>
                             </div>

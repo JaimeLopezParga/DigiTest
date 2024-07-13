@@ -3,74 +3,76 @@
 @section('page-content')
 <div class="container-fluid"></div>
     <div class="row">
-        <div class="col">
+        <div class="col bg-3">
             <h3>Peliculas</h3>
         </div>
     </div>
 </div>
 
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="container-full-height d-flex justify-content-center align-items-center bg-radial-gradient" style="height: 100vh;">
     <div class="row">
-        <div class="col-10"></div>
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Director</th>
-                        <th>Genero</th>
-                        <th>Calificacion</th>
-                        <th>Estreno</th>
-                        <th colspan="2">Manejo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($peliculas as $pelicula)
-                    <tr>
-                        <td class="align-middle">{{$pelicula->pelicula_id}}</td>
-                        <td class="align-middle">{{$pelicula->pelicula_nombre}}</td>
-                        <td class="align-middle">$ {{$pelicula->pelicula_precio}}</td>
-                        <td class="align-middle">{{$pelicula->pelicula_stock}}</td>
-                        <td class="align-middle">{{$pelicula->director->director_nombre}}</td>
-                        <td class="align-middle">{{$pelicula->genero->genero_nombre}}</td>
-                        <td class="align-middle">{{$pelicula->pelicula_calificacion}}</td>
-                        <td class="align-middle">{{$pelicula->pelicula_estreno}}</td>
-                        <td class="align-middle">
+        <div class="col-lg-12 mb-2">
+            <div class="card mx-5">
+                <div class="card-header">
+                    <b>Lista de Directores</b>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>N°</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Director</th>
+                                <th>Genero</th>
+                                <th>Calificacion</th>
+                                <th>Estreno</th>
+                                <th colspan="2">Manejo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($peliculas as $pelicula)
+                            <tr>
+                                <td class="align-middle">{{$pelicula->id}}</td>
+                                <td class="align-middle">{{$pelicula->pelicula_nombre}}</td>
+                                <td class="align-middle">$ {{$pelicula->pelicula_precio}}</td>
+                                <td class="align-middle">{{$pelicula->pelicula_stock}}</td>
+                                <td class="align-middle">{{$pelicula->director->director_nombre}}</td>
+                                <td class="align-middle">{{$pelicula->genero->genero_nombre}}</td>
+                                <td class="align-middle">{{$pelicula->pelicula_calificacion}}</td>
+                                <td class="align-middle">{{$pelicula->pelicula_estreno}}</td>
 
-                            <td class="align-middle">
-                                <form method="POST" action="{{route('peliculas.destroy', $pelicula->id)}}">
-                                    @csrf
-                                    @method('delete')
-                                    <button>
-                                        <span>D</span>
-                                    </button>
-                                </form>
-                            </td>
-    
-                            <td class="align-middle">
-                                <a href="{{route('peliculas.edit', $pelicula->id)}}" class="btn">
-                                    <span class="material-icons">edit</span>
-                                </a>
-                            </td>
-    
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="col-2">
-                <h1>1</h1>
-            </div>
+                                    <td class="align-middle">
+                                        <form method="POST" action="{{route('peliculas.destroy', $pelicula->id)}}">
+                                            @csrf
+                                            @method('delete')
+                                            <button data-toggle="tooltip" data-placement="top" title="Borrar">
+                                                <i class="fa-solid fa-delete-left"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+            
+                                    <td class="align-middle">
+                                        <a href="{{route('peliculas.edit', $pelicula->id)}}" class="btn" data-toggle="tooltip" data-placement="top" title="Editar">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                    </td>
+            
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
         </div>
 
         <br>
 
         <div class="row">
             <container>
-                <div class="card">
+                <div class="card mx-5 bg-3">
                     <div class="card-header">
-                        Agregar pelicula
+                        <i>Agregar pelicula</i>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{route('peliculas.store')}}">
@@ -110,11 +112,11 @@
                             </div>
                             <div class="form-group">
                                 <div class="row"> 
-                                    <div class="col-12">
-                                        <button class="btn" type="reset">Cancelar</button>
+                                    <div class="col-12 my-1">
+                                        <button class="btn btn-warning" type="reset">Cancelar</button>
                                     </div>
-                                    <div class="col-12">
-                                        <button class="btn" type="submit">Aceptar</button>
+                                    <div class="col-12 my-1">
+                                        <button class="btn btn-success" type="submit">Aceptar</button>
                                     </div>
                                 </div>
                             </div>

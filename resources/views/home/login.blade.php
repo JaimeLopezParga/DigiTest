@@ -6,21 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- Bootstrap head  --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .bg-vertical-gradient {
+            background: linear-gradient(to bottom, #e81010, #ffffff); /* Degradado de arriba a abajo */
+            color: white; /* Color del texto para buen contraste */
+            padding: 20px; /* Padding para el contenido interno */
+            border-radius: 5px; /* Bordes redondeados */
+            height: 100%; /* Altura para mostrar el degradado */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bg-5{
+            background-color: #fcfc43;
+        }
+    </style>
     <title>SphereBuster</title>
 </head>
 <body>
-    
-    <div class="container-fluid"></div>
-        <div class="row">
-            <div class="col">
-                <h3>Bienvenido</h3>
-            </div>
-        </div>
-    </div>
 
-    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <div>
-            <div class="card">
+    <div class="container-full-height d-flex justify-content-center align-items-center bg-vertical-gradient" style="height: 100vh;">
+        <div class="row">
+            <div class="card w-100 bg-5">
+                <div class="card-head">
+                    <b><i>Bienvenido a <span style="color:#e81010">SphereBuster</span></i></b>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{route('usuarios.login')}}">
                         @csrf
@@ -53,6 +63,7 @@
 
             </div>
         </div>
+
     </div>
 
     {{-- Bootstrap body --}}
